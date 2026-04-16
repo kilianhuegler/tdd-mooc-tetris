@@ -15,7 +15,7 @@ export class Board {
   }
 
   tick() {
-    if (this.row >= this.height - 1) {
+    if (this.row >= this.height - 1 || this.grid[this.row + 1][1] !== ".") {
       this.grid[this.row] = "." + this.block + ".";
       this.block = undefined;
     } else {
