@@ -5,6 +5,7 @@ export class Board {
   constructor(width, height) {
     this.width = width;
     this.height = height;
+    this.grid = Array.from({ length: height }, () => ".".repeat(width));
   }
 
   drop(block) {
@@ -14,7 +15,12 @@ export class Board {
   }
 
   tick() {
-    this.row++;
+    if (this.row >= this.height - 1) {
+      this.grid[this.row] = "." + this.block + ".";
+      this.block = undefined;
+    } else {
+      this.row++;
+    }
   }
 
   hasFalling() {
@@ -22,7 +28,7 @@ export class Board {
   }
 
   toString() {
-    let rows = Array.from({ length: this.height}, () => "...")
+    let rows = this.grid.map(r => r);
     if (this.block) rows[this.row] = "." + this.block + ".";
     return rows.map(r => r + "\n").join("");
   }
