@@ -9,13 +9,16 @@ export class Board {
 
   drop(block) {
     this.block = block;
+    this.row = 0;
+  }
+
+  tick() {
+    this.row++;
   }
 
   toString() {
-    if (this.block) {
-      return `.X.\n...\n...\n`;
-    } else {
-      return `...\n...\n...\n`;
-    }
+    let rows = Array.from({ length: this.height}, () => "...")
+    if (this.block) rows[this.row] = "." + this.block + ".";
+    return rows.map(r => r + "\n").join("");
   }
 }
