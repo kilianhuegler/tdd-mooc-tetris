@@ -16,6 +16,10 @@ export class RotatingShape {
     return new RotatingShape(rotated.join("\n"));
   }
 
+  rotateLeft() {
+    return this.rotateRight().rotateRight().rotateRight();
+  }
+
   toString() {
     return this.shape;
   }
