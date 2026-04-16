@@ -17,6 +17,10 @@ export class Board {
     this.row++;
   }
 
+  hasFalling() {
+    return !!this.block;
+  }
+
   toString() {
     let rows = Array.from({ length: this.height}, () => "...")
     if (this.block) rows[this.row] = "." + this.block + ".";
