@@ -10,6 +10,12 @@ export class RotatingShape {
     return new RotatingShape(str);
   }
 
+  rotateRight() {
+    const rows = this.shape.split("\n");
+    const rotated = rows.map((_, r) => rows.map((_, c) => rows[rows.length - c - 1][r]).join(""));
+    return new RotatingShape(rotated.join("\n"));
+  }
+
   toString() {
     return this.shape;
   }
