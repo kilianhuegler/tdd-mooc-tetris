@@ -10,6 +10,8 @@ export class Tetromino {
 
   static I_SHAPE = Tetromino.createRotations(".....\n.....\nIIII.\n.....\n.....", 2);
 
+  static O_SHAPE = Tetromino.createRotations(".OO\n.OO\n...", 1);
+
   static createRotations(str, numberOfRotations) {
     const rotations = [];
     let currentShape = RotatingShape.fromString(str);
