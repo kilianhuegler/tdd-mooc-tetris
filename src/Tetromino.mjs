@@ -7,6 +7,8 @@ export class Tetromino {
 
   static T_SHAPE = new Tetromino(RotatingShape.fromString(".T.\nTTT\n..."));
 
+  static I_SHAPE = new Tetromino(RotatingShape.fromString(".....\n.....\nIIII.\n.....\n....."));
+
   toString() {
     return this.shape.toString();
   }
@@ -14,6 +16,7 @@ export class Tetromino {
   rotateRight() {
     return new Tetromino(this.shape.rotateRight());
   }
+
   rotateLeft() {
     return new Tetromino(this.shape.rotateLeft());
   }
