@@ -35,6 +35,7 @@ export class Board {
     if (this.block) rows[this.row] = "." + this.block + ".";
     return rows.map(r => r + "\n").join("");
   }
+
   getCellAt(row, col) {
     if (this.block) {
       const blockRow = row - this.row;
@@ -43,6 +44,7 @@ export class Board {
         const blockChar = this.block[blockRow][blockCol];
         if (blockChar !== ".") return blockChar;
       }
-    }return this.grid[row][col];
+    }
+    return this.grid[row][col];
   }
 }
