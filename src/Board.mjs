@@ -80,7 +80,7 @@ export class Board {
   }
 
   moveLeft() {
-    this.col--;
+    if (this.col > 0) this.col--;
   }
 
   moveRight() {
