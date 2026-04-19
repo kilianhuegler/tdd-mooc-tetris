@@ -30,7 +30,7 @@ export class Board {
 
   tick() {
     if (!this.block) return;
-    if (this.hitBottomorBlock()) {
+    if (this.hitBottomOrBlock()) {
       this.freeze();
       this.block = undefined;
     } else {
@@ -38,7 +38,7 @@ export class Board {
     }
   }
 
-  hitBottomorBlock() {
+  hitBottomOrBlock() {
     for (const { row, col } of this.blockCells()) {
       const rowBelow = row + 1;
       if (rowBelow >= this.height || this.grid[rowBelow][col] !== ".") return true;
