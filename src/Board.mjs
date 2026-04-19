@@ -84,7 +84,8 @@ export class Board {
   }
 
   moveRight() {
-    this.col++;
+    const shapeWidth = this.block[0].length;
+    if (this.col + shapeWidth < this.width) this.col++;
   }
 
   moveDown() {
