@@ -19,13 +19,22 @@ export class Board {
 
   tick() {
     if (!this.block) return;
-    if (this.row + this.block.length >= this.height || this.grid[this.row + 1][1] !== ".") {
+    if (this.hitBottomorBlock()) {
       this.freeze();
       this.block = undefined;
     } else {
       this.row++;
     }
   }
+
+  hitBottomorBlock() {
+    for (let blockRow = 0; blockRow < this.block.length; blockRow++) {
+      for (let blockCol = 0; blockCol < this.block[blockRow].length; blockCol++) {
+        if (this.block[blockRow][blockCol] === ".") continue;
+        const r = this.row + blockRow + 1, c = this.col + blockCol;
+        if (r >= this.height || this.grid[r][c] !== ".") return true;
+      }}
+    return false;}
 
   freeze() {
     for (let blockRow = 0; blockRow < this.block.length; blockRow++) {
