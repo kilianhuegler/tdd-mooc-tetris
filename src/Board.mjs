@@ -39,12 +39,9 @@ export class Board {
   }
 
   hitBottomorBlock() {
-    for (let blockRow = 0; blockRow < this.block.length; blockRow++) {
-      for (let blockCol = 0; blockCol < this.block[blockRow].length; blockCol++) {
-        if (this.block[blockRow][blockCol] === ".") continue;
-        const r = this.row + blockRow + 1, c = this.col + blockCol;
-        if (r >= this.height || this.grid[r][c] !== ".") return true;
-      }
+    for (const { row, col } of this.blockCells()) {
+      const rowBelow = row + 1;
+      if (rowBelow >= this.height || this.grid[rowBelow][col] !== ".") return true;
     }
     return false;
   }
