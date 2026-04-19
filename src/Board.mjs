@@ -18,13 +18,15 @@ export class Board {
   }
 
   tick() {
-    if (this.row >= this.height - 1 || this.grid[this.row + 1][1] !== ".") {
-      this.grid[this.row] = "." + this.block + ".";
+    if (!this.block) return;
+    if (this.row + this.block.length >= this.height || this.grid[this.row + 1][1] !== ".") {
+      this.freeze();
       this.block = undefined;
     } else {
       this.row++;
     }
   }
+
   freeze() {
     for (let blockRow = 0; blockRow < this.block.length; blockRow++) {
       for (let blockCol = 0; blockCol < this.block[blockRow].length; blockCol++) {
@@ -33,7 +35,9 @@ export class Board {
         const r = this.row + blockRow;
         const c = this.col + blockCol;
         this.grid[r] = this.grid[r].substring(0, c) + ch + this.grid[r].substring(c + 1);
-      }}}
+      }
+    }
+  }
 
   hasFalling() {
     return !!this.block;
