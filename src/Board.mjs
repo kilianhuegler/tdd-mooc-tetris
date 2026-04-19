@@ -10,8 +10,11 @@ export class Board {
 
   drop(block) {
     if (this.block) throw new Error("already falling")
-    this.block = block;
+    const shapeString = block.toString().trim();
+    this.block = shapeString.split("\n");
+    const shapeWidth = this.block[0].length;
     this.row = 0;
+    this.col = Math.floor((this.width - shapeWidth) / 2);
   }
 
   tick() {
