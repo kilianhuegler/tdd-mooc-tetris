@@ -31,9 +31,14 @@ export class Board {
   }
 
   toString() {
-    let rows = this.grid.map(r => r);
-    if (this.block) rows[this.row] = "." + this.block + ".";
-    return rows.map(r => r + "\n").join("");
+    let result = "";
+    for (let row = 0; row < this.height; row++) {
+      for (let col = 0; col < this.width; col++) {
+        result += this.getCellAt(row, col);
+      }
+      result += "\n";
+    }
+    return result;
   }
 
   getCellAt(row, col) {
