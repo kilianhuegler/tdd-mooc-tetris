@@ -78,4 +78,8 @@ export class Board {
     }
     return this.grid[row][col];
   }
+
+  moveLeft() {
+    this.col--;
+  }
 }
