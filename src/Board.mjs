@@ -9,7 +9,7 @@ export class Board {
   }
 
   drop(block) {
-    if (this.block) throw new Error("already falling")
+    if (this.block) throw new Error("already falling");
     const shapeString = block.toString().trim();
     this.block = shapeString.split("\n");
     const shapeWidth = this.block[0].length;
@@ -25,6 +25,15 @@ export class Board {
       this.row++;
     }
   }
+  freeze() {
+    for (let blockRow = 0; blockRow < this.block.length; blockRow++) {
+      for (let blockCol = 0; blockCol < this.block[blockRow].length; blockCol++) {
+        const ch = this.block[blockRow][blockCol];
+        if (ch === ".") continue;
+        const r = this.row + blockRow;
+        const c = this.col + blockCol;
+        this.grid[r] = this.grid[r].substring(0, c) + ch + this.grid[r].substring(c + 1);
+      }}}
 
   hasFalling() {
     return !!this.block;
