@@ -82,4 +82,8 @@ export class Board {
   moveLeft() {
     this.col--;
   }
+
+  moveRight() {
+    this.col++;
+  }
 }

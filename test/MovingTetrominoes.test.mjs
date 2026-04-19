@@ -23,7 +23,7 @@ describe("MovingTetrominoes", () => {
     );
   });
 
-  test.skip("a falling tetromino can be moved right", () => {
+  test("a falling tetromino can be moved right", () => {
     board.drop(Tetromino.T_SHAPE);
     board.moveRight();
 
