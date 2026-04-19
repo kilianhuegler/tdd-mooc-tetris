@@ -88,12 +88,19 @@ export class Board {
   }
 
   moveLeft() {
-    if (this.col > 0 && this.canMoveLeft()) this.col--;
+    if (this.col&& this.canMoveLeft()) this.col--;
+  }
+
+  canMoveRight() {
+    for (const { row, col } of this.blockCells()) {
+      const colRight = col + 1;
+      if (colRight >= this.width || this.grid[row][colRight] !== ".") return false;
+    }
+    return true;
   }
 
   moveRight() {
-    const shapeWidth = this.block[0].length;
-    if (this.col + shapeWidth < this.width) this.col++;
+    if (this.col && this.canMoveRight()) this.col++;
   }
 
   moveDown() {

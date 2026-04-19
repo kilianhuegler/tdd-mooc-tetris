@@ -126,7 +126,32 @@ describe("MovingTetrominoes", () => {
     );
   });
 
-  test.skip("it cannot be moved right through other blocks", () => {});
+  test("it cannot be moved right through other blocks", () => {
+    board.drop(Tetromino.T_SHAPE);
+    board.moveRight();
+    board.moveRight();
+    board.moveRight();
+    board.moveRight();
+    board.moveRight();
+    fallToBottom(board);
+
+    board.drop(Tetromino.T_SHAPE);
+    board.tick();
+    board.tick();
+    board.tick();
+
+    for (let i = 0; i < 10; i++) board.moveRight();
+
+    expect(board.toString()).to.equalShape(
+      `..........
+     ..........
+     ..........
+     ......T...
+     .....TTTT.
+     .......TTT`
+    );
+  });
+
   test.skip("it cannot be moved down through other blocks (will stop falling)", () => {});
 
 });
