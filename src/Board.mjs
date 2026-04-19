@@ -7,6 +7,7 @@ export class Board {
     this.height = height;
     this.grid = Array.from({ length: height }, () => ".".repeat(width));
   }
+
   *blockCells() {
     for (let blockRow = 0; blockRow < this.block.length; blockRow++) {
       for (let blockCol = 0; blockCol < this.block[blockRow].length; blockCol++) {
@@ -43,18 +44,14 @@ export class Board {
         if (this.block[blockRow][blockCol] === ".") continue;
         const r = this.row + blockRow + 1, c = this.col + blockCol;
         if (r >= this.height || this.grid[r][c] !== ".") return true;
-      }}
-    return false;}
+      }
+    }
+    return false;
+  }
 
   freeze() {
-    for (let blockRow = 0; blockRow < this.block.length; blockRow++) {
-      for (let blockCol = 0; blockCol < this.block[blockRow].length; blockCol++) {
-        const ch = this.block[blockRow][blockCol];
-        if (ch === ".") continue;
-        const r = this.row + blockRow;
-        const c = this.col + blockCol;
-        this.grid[r] = this.grid[r].substring(0, c) + ch + this.grid[r].substring(c + 1);
-      }
+    for (const { row, col, char } of this.blockCells()) {
+      this.grid[row] = this.grid[row].substring(0, col) + char + this.grid[row].substring(col + 1);
     }
   }
 
