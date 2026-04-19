@@ -79,8 +79,16 @@ export class Board {
     return this.grid[row][col];
   }
 
+  canMoveLeft() {
+    for (const { row, col } of this.blockCells()) {
+      const colLeft = col - 1;
+      if (colLeft < 0 || this.grid[row][colLeft] !== ".") return false;
+    }
+    return true;
+  }
+
   moveLeft() {
-    if (this.col > 0) this.col--;
+    if (this.col > 0 && this.canMoveLeft()) this.col--;
   }
 
   moveRight() {
