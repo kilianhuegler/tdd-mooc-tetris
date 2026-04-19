@@ -3,6 +3,12 @@ import { expect } from "chai";
 import { Board } from "../src/Board.mjs";
 import { Tetromino } from "../src/Tetromino.mjs";
 
+function fallToBottom(board) {
+  for (let i = 0; i < 10; i++) {
+    board.tick();
+  }
+}
+
 describe("MovingTetrominoes", () => {
   let board;
   beforeEach(() => {
@@ -96,7 +102,30 @@ describe("MovingTetrominoes", () => {
     );
   });
 
-  test.skip("it cannot be moved left through other blocks", () => {});
+  test("it cannot be moved left through other blocks", () => {
+    board.drop(Tetromino.T_SHAPE);
+    board.moveLeft();
+    board.moveLeft();
+    board.moveLeft();
+    fallToBottom(board);
+
+    board.drop(Tetromino.T_SHAPE);
+    board.tick();
+    board.tick();
+    board.tick();
+
+    for (let i = 0; i < 10; i++) board.moveLeft();
+
+    expect(board.toString()).to.equalShape(
+      `..........
+     ..........
+     ..........
+     ...T......
+     .TTTT.....
+     TTT.......`
+    );
+  });
+
   test.skip("it cannot be moved right through other blocks", () => {});
   test.skip("it cannot be moved down through other blocks (will stop falling)", () => {});
 
