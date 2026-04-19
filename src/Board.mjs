@@ -7,6 +7,16 @@ export class Board {
     this.height = height;
     this.grid = Array.from({ length: height }, () => ".".repeat(width));
   }
+  *blockCells() {
+    for (let blockRow = 0; blockRow < this.block.length; blockRow++) {
+      for (let blockCol = 0; blockCol < this.block[blockRow].length; blockCol++) {
+        const blockChar = this.block[blockRow][blockCol];
+        if (blockChar !== ".") {
+          yield { row: this.row + blockRow, col: this.col + blockCol, char: blockChar };
+        }
+      }
+    }
+  }
 
   drop(block) {
     if (this.block) throw new Error("already falling");
