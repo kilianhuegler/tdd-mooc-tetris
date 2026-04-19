@@ -11,7 +11,7 @@ export class Board {
   drop(block) {
     if (this.block) throw new Error("already falling");
     const shapeString = block.toString().trim();
-    this.block = shapeString.split("\n");
+    this.block = shapeString.split("\n").filter((r) => /[^.]/.test(r));
     const shapeWidth = this.block[0].length;
     this.row = 0;
     this.col = Math.floor((this.width - shapeWidth) / 2);
