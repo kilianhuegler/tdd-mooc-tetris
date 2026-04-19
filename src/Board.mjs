@@ -89,6 +89,6 @@ export class Board {
   }
 
   moveDown() {
-    this.tick();
+    this.row++;
   }
 }
