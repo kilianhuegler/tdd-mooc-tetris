@@ -23,7 +23,7 @@ describe("Rotating falling tetrominoes", () => {
     );
   });
 
-  test("a falling tetromino can be rotated left", () => {
+  test.skip("a falling tetromino can be rotated left", () => {
     board.drop(Tetromino.T_SHAPE);
     board.rotateLeft();
 

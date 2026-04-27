@@ -21,7 +21,11 @@ export class Board {
   }
 
   blockRows() {
-    return this.block.toString().trim().split("\n").filter((r) => /[^.]/.test(r));
+    return this.block
+      .toString()
+      .trim()
+      .split("\n")
+      .filter((r) => /[^.]/.test(r));
   }
 
   drop(block) {
@@ -110,5 +114,10 @@ export class Board {
 
   moveDown() {
     this.tick();
+  }
+  rotateRight() {
+    if (this.hasFalling()) {
+      this.block = this.block.rotateRight();
+    }
   }
 }
