@@ -122,9 +122,15 @@ export class Board {
 
   hasValidPosition() {
     for (const { row, col } of this.blockCells()) {
-      if (col < 0 || col >= this.width) {return false;}
-      if (row < 0 || row >= this.height) {return false;}
-      if (this.grid[row][col] !== ".") {return false;}
+      if (col < 0 || col >= this.width) {
+        return false;
+      }
+      if (row < 0 || row >= this.height) {
+        return false;
+      }
+      if (this.grid[row][col] !== ".") {
+        return false;
+      }
     }
     return true;
   }
@@ -146,10 +152,4 @@ export class Board {
   }
 
   rotateLeft() {
-    if (this.hasFalling()) {
-      const oldBlock = this.block; const oldCol = this.col; this.block = this.block.rotateLeft();
-      if (!this.hasValidPosition()) {this.col++;
-        if (!this.hasValidPosition()) {this.col -= 2;
-          if (!this.hasValidPosition()) {
-            this.block = oldBlock;
-            this.col = oldCol;}}}}}}
+    if (this.hasFalling()) this.tryRotation(this.block.rotateLeft(), [1, -1]);}}
