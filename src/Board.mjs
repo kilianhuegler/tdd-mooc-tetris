@@ -115,9 +115,16 @@ export class Board {
   moveDown() {
     this.tick();
   }
+
   rotateRight() {
     if (this.hasFalling()) {
       this.block = this.block.rotateRight();
+    }
+  }
+
+  rotateLeft() {
+    if (this.hasFalling()) {
+      this.block = this.block.rotateLeft();
     }
   }
 }
