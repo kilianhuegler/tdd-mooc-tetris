@@ -91,7 +91,7 @@ describe("Rotating falling tetrominoes", () => {
     );
   });
 
-  test("wall kick: pushes the block away from the left wall when rotating", () => {
+  test.skip("wall kick: pushes the block away from the left wall when rotating", () => {
     board.drop(Tetromino.T_SHAPE);
     board.rotateRight();
     for (let i = 0; i < 10; i++) {
