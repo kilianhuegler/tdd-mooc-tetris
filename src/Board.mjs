@@ -150,9 +150,17 @@ export class Board {
   rotateLeft() {
     if (this.hasFalling()) {
       const oldBlock = this.block;
+      const oldCol = this.col;
       this.block = this.block.rotateLeft();
       if (!this.hasValidPosition()) {
-        this.block = oldBlock;
+        this.col++;
+        if (!this.hasValidPosition()) {
+          this.col -= 2;
+          if (!this.hasValidPosition()) {
+            this.block = oldBlock;
+            this.col = oldCol;
+          }
+        }
       }
     }
   }
