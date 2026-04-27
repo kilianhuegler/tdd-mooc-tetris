@@ -152,4 +152,6 @@ export class Board {
   }
 
   rotateLeft() {
-    if (this.hasFalling()) this.tryRotation(this.block.rotateLeft(), [1, -1]);}}
+    if (this.hasFalling()) this.tryRotation(this.block.rotateLeft(), [1, -1]);
+  }
+}
