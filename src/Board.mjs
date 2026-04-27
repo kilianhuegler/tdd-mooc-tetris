@@ -152,14 +152,7 @@ export class Board {
       this.block = this.block.rotateLeft();
       if (!this.hasValidPosition()) {
         this.col++;
-        if (!this.hasValidPosition()) {
-          this.col -= 2;
+        if (!this.hasValidPosition()) {this.col -= 2;
           if (!this.hasValidPosition()) {
             this.block = oldBlock;
-            this.col = oldCol;
-          }
-        }
-      }
-    }
-  }
-}
+            this.col = oldCol;}}}}}}
