@@ -142,16 +142,8 @@ export class Board {
   }
 
   rotateRight() {
-    if (this.hasFalling()) {
-      const oldBlock = this.block;
-      const oldCol = this.col;
-      this.block = this.block.rotateRight();
-      if (!this.hasValidPosition()) {this.col--;
-        if (!this.hasValidPosition()) {this.col += 2;
-          if (!this.hasValidPosition()) {
-            this.block = oldBlock;
-            this.col = oldCol;
-          }}}}}
+    if (this.hasFalling()) this.tryRotation(this.block.rotateRight(), [-1, 1]);
+  }
 
   rotateLeft() {
     if (this.hasFalling()) {
