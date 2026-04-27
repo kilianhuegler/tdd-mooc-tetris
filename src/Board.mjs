@@ -28,7 +28,7 @@ export class Board {
     if (this.block) throw new Error("already falling");
     const shapeString = block.toString().trim();
     this.block = shapeString.split("\n").filter((r) => /[^.]/.test(r));
-    const shapeWidth = this.block[0].length;
+    const shapeWidth = this.blockRows()[0].length;
     this.row = 0;
     this.col = Math.floor((this.width - shapeWidth) / 2);
   }
@@ -74,6 +74,7 @@ export class Board {
 
   getCellAt(row, col) {
     if (this.block) {
+      const rows = this.blockRows();
       const blockRow = row - this.row;
       const blockCol = col - this.col;
       if (blockRow >= 0 && blockRow < this.block.length && blockCol >= 0 && blockCol < this.block[blockRow].length) {
