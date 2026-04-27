@@ -97,7 +97,9 @@ export class Board {
   }
 
   moveLeft() {
-    if (this.col && this.canMoveLeft()) this.col--;
+    if (this.hasFalling() && this.canMoveLeft()) {
+      this.col--;
+    }
   }
 
   canMoveRight() {
@@ -109,7 +111,9 @@ export class Board {
   }
 
   moveRight() {
-    if (this.col && this.canMoveRight()) this.col++;
+    if (this.hasFalling() && this.canMoveRight()) {
+      this.col++;
+    }
   }
 
   moveDown() {
@@ -137,7 +141,11 @@ export class Board {
 
   rotateLeft() {
     if (this.hasFalling()) {
+      const oldBlock = this.block;
       this.block = this.block.rotateLeft();
+      if (!this.hasValidPosition()) {
+        this.block = oldBlock;
+      }
     }
   }
 }
