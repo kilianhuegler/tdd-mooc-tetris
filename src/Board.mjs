@@ -115,12 +115,15 @@ export class Board {
   moveDown() {
     this.tick();
   }
+
   hasValidPosition() {
     for (const { row, col } of this.blockCells()) {
       if (col < 0 || col >= this.width) {return false;}
       if (row < 0 || row >= this.height) {return false;}
       if (this.grid[row][col] !== ".") {return false;}
-    }return true;}
+    }
+    return true;
+  }
 
   rotateRight() {
     if (this.hasFalling()) {
