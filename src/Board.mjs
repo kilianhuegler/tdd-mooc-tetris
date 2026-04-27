@@ -9,6 +9,7 @@ export class Board {
   }
 
   *blockCells() {
+    const rows = this.blockRows();
     for (let blockRow = 0; blockRow < this.block.length; blockRow++) {
       for (let blockCol = 0; blockCol < this.block[blockRow].length; blockCol++) {
         const blockChar = this.block[blockRow][blockCol];
@@ -17,6 +18,10 @@ export class Board {
         }
       }
     }
+  }
+
+  blockRows() {
+    return this.block;
   }
 
   drop(block) {
@@ -88,7 +93,7 @@ export class Board {
   }
 
   moveLeft() {
-    if (this.col&& this.canMoveLeft()) this.col--;
+    if (this.col && this.canMoveLeft()) this.col--;
   }
 
   canMoveRight() {
