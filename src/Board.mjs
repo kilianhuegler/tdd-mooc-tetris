@@ -10,9 +10,9 @@ export class Board {
 
   *blockCells() {
     const rows = this.blockRows();
-    for (let blockRow = 0; blockRow < this.block.length; blockRow++) {
-      for (let blockCol = 0; blockCol < this.block[blockRow].length; blockCol++) {
-        const blockChar = this.block[blockRow][blockCol];
+    for (let blockRow = 0; blockRow < rows.length; blockRow++) {
+      for (let blockCol = 0; blockCol < rows[blockRow].length; blockCol++) {
+        const blockChar = rows[blockRow][blockCol];
         if (blockChar !== ".") {
           yield { row: this.row + blockRow, col: this.col + blockCol, char: blockChar };
         }
@@ -21,13 +21,12 @@ export class Board {
   }
 
   blockRows() {
-    return this.block;
+    return this.block.toString().trim().split("\n").filter((r) => /[^.]/.test(r));
   }
 
   drop(block) {
     if (this.block) throw new Error("already falling");
-    const shapeString = block.toString().trim();
-    this.block = shapeString.split("\n").filter((r) => /[^.]/.test(r));
+    this.block = block;
     const shapeWidth = this.blockRows()[0].length;
     this.row = 0;
     this.col = Math.floor((this.width - shapeWidth) / 2);
@@ -77,8 +76,8 @@ export class Board {
       const rows = this.blockRows();
       const blockRow = row - this.row;
       const blockCol = col - this.col;
-      if (blockRow >= 0 && blockRow < this.block.length && blockCol >= 0 && blockCol < this.block[blockRow].length) {
-        const blockChar = this.block[blockRow][blockCol];
+      if (blockRow >= 0 && blockRow < rows.length && blockCol >= 0 && blockCol < rows[blockRow].length) {
+        const blockChar = rows[blockRow][blockCol];
         if (blockChar !== ".") return blockChar;
       }
     }
