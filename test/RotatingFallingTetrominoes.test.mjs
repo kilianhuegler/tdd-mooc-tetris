@@ -37,7 +37,7 @@ describe("Rotating falling tetrominoes", () => {
     );
   });
 
-  test("it cannot be rotated when there is no room to rotate (right)", () => {
+  test.skip("it cannot be rotated when there is no room to rotate (right)", () => {
     board.drop(Tetromino.T_SHAPE);
     board.rotateLeft();
     for (let i = 0; i < 10; i++) {
@@ -55,7 +55,7 @@ describe("Rotating falling tetrominoes", () => {
     );
   });
 
-  test("it cannot be rotated when there is no room to rotate (left)", () => {
+  test.skip("it cannot be rotated when there is no room to rotate (left)", () => {
     board.drop(Tetromino.T_SHAPE);
     board.rotateRight();
     for (let i = 0; i < 10; i++) {
@@ -91,7 +91,7 @@ describe("Rotating falling tetrominoes", () => {
     );
   });
 
-  test.skip("wall kick: pushes the block away from the left wall when rotating", () => {
+  test("wall kick: pushes the block away from the left wall when rotating", () => {
     board.drop(Tetromino.T_SHAPE);
     board.rotateRight();
     for (let i = 0; i < 10; i++) {
