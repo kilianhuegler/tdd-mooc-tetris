@@ -128,6 +128,16 @@ export class Board {
     }
     return true;
   }
+  tryRotation(rotatedBlock, kickOffsets) {
+    const oldBlock = this.block;
+    const oldCol = this.col;
+    this.block = rotatedBlock;
+    for (const offset of [0, ...kickOffsets]) {
+      this.col = oldCol + offset;
+      if (this.hasValidPosition()) return;
+    }
+    this.block = oldBlock;
+    this.col = oldCol;}
 
   rotateRight() {
     if (this.hasFalling()) {
