@@ -39,15 +39,16 @@ describe("Rotating falling tetrominoes", () => {
 
   test("it cannot be rotated when there is no room to rotate", () => {
     board.drop(Tetromino.T_SHAPE);
+    board.rotateLeft();
     for (let i = 0; i < 10; i++) {
       board.moveRight();
     }
     board.rotateRight();
 
     expect(board.toString()).to.equalShape(
-      `........T.
-       .......TTT
-       ..........
+      `.........T
+       ........TT
+       .........T
        ..........
        ..........
        ..........`
