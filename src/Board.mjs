@@ -128,6 +128,7 @@ export class Board {
     }
     return true;
   }
+
   tryRotation(rotatedBlock, kickOffsets) {
     const oldBlock = this.block;
     const oldCol = this.col;
@@ -137,25 +138,20 @@ export class Board {
       if (this.hasValidPosition()) return;
     }
     this.block = oldBlock;
-    this.col = oldCol;}
+    this.col = oldCol;
+  }
 
   rotateRight() {
     if (this.hasFalling()) {
       const oldBlock = this.block;
       const oldCol = this.col;
       this.block = this.block.rotateRight();
-      if (!this.hasValidPosition()) {
-        this.col--;
-        if (!this.hasValidPosition()) {
-          this.col += 2;
+      if (!this.hasValidPosition()) {this.col--;
+        if (!this.hasValidPosition()) {this.col += 2;
           if (!this.hasValidPosition()) {
             this.block = oldBlock;
             this.col = oldCol;
-          }
-        }
-      }
-    }
-  }
+          }}}}}
 
   rotateLeft() {
     if (this.hasFalling()) {
