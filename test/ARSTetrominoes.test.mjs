@@ -10,4 +10,12 @@ describe("ARS T shape", () => {
        ...`
     );
   });
+
+  test("can be rotated right", () => {
+    expect(ARSTetromino.T_SHAPE.rotateRight().toString()).to.equalShape(
+      `.T.
+     TT.
+     .T.`
+    );
+  });
 });
