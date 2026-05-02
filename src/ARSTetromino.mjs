@@ -4,12 +4,9 @@ export class ARSTetromino {
     this.i = i;
   }
 
-  static T_SHAPE = new ARSTetromino([
-    "TTT\n.T.\n...\n",
-    ".T.\nTT.\n.T.\n",
-    "...\n.T.\nTTT\n",
-    ".T.\n.TT\n.T.\n",
-  ]);
+  static T_SHAPE = new ARSTetromino(["TTT\n.T.\n...\n", ".T.\nTT.\n.T.\n", "...\n.T.\nTTT\n", ".T.\n.TT\n.T.\n"]);
+
+  static I_SHAPE = new ARSTetromino(["....\nIIII\n....\n....\n", "..I.\n..I.\n..I.\n..I.\n"]);
 
   toString() {
     return this.rotations[this.i];

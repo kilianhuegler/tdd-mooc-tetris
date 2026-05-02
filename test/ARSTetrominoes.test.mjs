@@ -26,4 +26,15 @@ describe("ARS T shape", () => {
        .T.`
     );
   });
+
+  describe("ARS I shape", () => {
+    test("spawn orientation", () => {
+      expect(ARSTetromino.I_SHAPE.toString()).to.equalShape(
+        `....
+       IIII
+       ....
+       ....`
+      );
+    });
+  });
 });
