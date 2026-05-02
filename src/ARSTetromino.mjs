@@ -8,6 +8,8 @@ export class ARSTetromino {
 
   static I_SHAPE = new ARSTetromino(["....\nIIII\n....\n....\n", "..I.\n..I.\n..I.\n..I.\n"]);
 
+  static O_SHAPE = new ARSTetromino(["OO\nOO\n"]);
+
   toString() {
     return this.rotations[this.i];
   }
