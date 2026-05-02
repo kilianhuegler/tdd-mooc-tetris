@@ -37,4 +37,22 @@ describe("ARS T shape", () => {
       );
     });
   });
+
+  test("can be rotated right", () => {
+    expect(ARSTetromino.I_SHAPE.rotateRight().toString()).to.equalShape(
+      `..I.
+       ..I.
+       ..I.
+       ..I.`
+    );
+  });
+
+  test("can be rotated left", () => {
+    expect(ARSTetromino.I_SHAPE.rotateLeft().toString()).to.equalShape(
+      `..I.
+       ..I.
+       ..I.
+       ..I.`
+    );
+  });
 });
