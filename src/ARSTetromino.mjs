@@ -4,7 +4,7 @@ export class ARSTetromino {
     this.i = i;
   }
 
-  static T_SHAPE = new ARSTetromino(["TTT.\n.T..\n....\n...."]);
+  static T_SHAPE = new ARSTetromino(["TTT.\n.T..\n....\n....\n"]);
 
   toString() {
     return this.rotations[this.i];
