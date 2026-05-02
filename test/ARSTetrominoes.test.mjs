@@ -64,4 +64,18 @@ describe("ARS O shape", () => {
        OO`
     );
   });
+
+  test("does not rotate when rotated right", () => {
+    expect(ARSTetromino.O_SHAPE.rotateRight().toString()).to.equalShape(
+      `OO
+       OO`
+    );
+  });
+
+  test("does not rotate when rotated left", () => {
+    expect(ARSTetromino.O_SHAPE.rotateLeft().toString()).to.equalShape(
+      `OO
+       OO`
+    );
+  });
 });
