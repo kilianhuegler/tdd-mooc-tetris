@@ -1,6 +1,13 @@
 import { beforeEach, describe, test } from "vitest";
 import { expect } from "chai";
 import { Scoring } from "../src/Scoring.mjs";
+import { Board } from "../src/Board.mjs";
+
+function fallToBottom(board) {
+  for (let i = 0; i < 10; i++) {
+    board.tick();
+  }
+}
 
 describe("Nintendo scoring", () => {
   let scoring;
@@ -31,5 +38,18 @@ describe("Nintendo scoring", () => {
   test("quadruple line clear -> 1200 points", () => {
     scoring.linesRemoved(4);
     expect(scoring.score).to.equal(1200);
+  });
+});
+
+describe("Board with scoring", () => {
+  test("test scoring when lines are cleared on the board", () => {
+    const board = new Board(4, 3);
+    const scoring = new Scoring();
+    board.addObserver(scoring);
+
+    board.drop("XXXX");
+    fallToBottom(board);
+
+    expect(scoring.score).to.equal(40);
   });
 });
