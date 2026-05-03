@@ -48,8 +48,10 @@ export class Board {
   }
 
   clearFullLines() {
-    if (!this.grid[this.height - 1].includes(".")) {
-      this.grid[this.height - 1] = ".".repeat(this.width);
+    for (let row = 0; row < this.height; row++) {
+      if (!this.grid[row].includes(".")) {
+        this.grid[row] = ".".repeat(this.width);
+      }
     }
   }
 

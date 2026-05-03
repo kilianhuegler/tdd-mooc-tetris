@@ -24,4 +24,18 @@ describe("Clearing lines", () => {
        ....`
     );
   });
+
+  test("a full row above the bottom is also cleared", () => {
+    board.drop("X");
+    fallToBottom(board);
+
+    board.drop("XXXX");
+    fallToBottom(board);
+
+    expect(board.toString()).to.equalShape(
+      `....
+      ....
+      .X..`
+    );
+  });
 });
