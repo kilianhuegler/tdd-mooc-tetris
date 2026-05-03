@@ -105,3 +105,29 @@ describe("ARS L shape", () => {
     );
   });
 });
+
+describe("ARS J shape", () => {
+  test("spawn orientation", () => {
+    expect(ARSTetromino.J_SHAPE.toString()).to.equalShape(
+      `...
+       JJJ
+       ..J`
+    );
+  });
+
+  test("can be rotated right", () => {
+    expect(ARSTetromino.J_SHAPE.rotateRight().toString()).to.equalShape(
+      `.J.
+       .J.
+       JJ.`
+    );
+  });
+
+  test("can be rotated left", () => {
+    expect(ARSTetromino.J_SHAPE.rotateLeft().toString()).to.equalShape(
+      `.JJ
+       .J.
+       .J.`
+    );
+  });
+});
