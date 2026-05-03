@@ -20,6 +20,7 @@ export class Board {
       }
     }
   }
+
   addObserver(observer) {
     this.observers.push(observer);
   }
@@ -61,7 +62,9 @@ export class Board {
     if (removed > 0) {
       for (const observer of this.observers) {
         observer.linesRemoved(removed);
-      }}}
+      }
+    }
+  }
 
   hitBottomOrBlock() {
     for (const { row, col } of this.blockCells()) {
