@@ -38,4 +38,87 @@ describe("Clearing lines", () => {
       .X..`
     );
   });
+
+  test("blocks above cleared row fall down 1", () => {
+    board.drop("XXXX");
+    fallToBottom(board);
+
+    board.drop("Y");
+    fallToBottom(board);
+
+    expect(board.toString()).to.equalShape(
+      `....
+      ....
+      .Y..`
+    );
+  });
+
+  test("blocks above cleared row fall down 2", () => {
+    board.drop("XX\nXX");
+    fallToBottom(board);
+
+    board.drop("XXXX");
+    fallToBottom(board);
+
+    expect(board.toString()).to.equalShape(
+      `....
+      .XX.
+      .XX.`
+    );
+  });
+});
+
+describe("Multi-line clears", () => {
+  let board;
+  beforeEach(() => {
+    board = new Board(4, 4);
+  });
+
+  test("double: two full rows are cleared", () => {
+    board.drop("XXXX\nXXXX");
+    fallToBottom(board);
+
+    expect(board.toString()).to.equalShape(
+      `....
+      ....
+      ....
+      ....`
+    );
+  });
+
+  test("triple: three full rows are cleared", () => {
+    board.drop("XXXX\nXXXX\nXXXX");
+    fallToBottom(board);
+
+    expect(board.toString()).to.equalShape(
+      `....
+      ....
+      ....
+      ....`
+    );
+  });
+
+  test("four full rows are cleared", () => {
+    board.drop("XXXX\nXXXX\nXXXX\nXXXX");
+    fallToBottom(board);
+
+    expect(board.toString()).to.equalShape(
+      `....
+      ....
+      ....
+      ....`
+    );
+  });
+
+  test("hurdle test", () => {
+    board.drop("XXXX\n..X.\nXXXX");
+    fallToBottom(board);
+
+    expect(board.toString()).to.equalShape(
+      `....
+      ....
+      ....
+      ..X.`
+    );
+  });
 });

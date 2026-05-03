@@ -48,10 +48,9 @@ export class Board {
   }
 
   clearFullLines() {
-    for (let row = 0; row < this.height; row++) {
-      if (!this.grid[row].includes(".")) {
-        this.grid[row] = ".".repeat(this.width);
-      }
+    this.grid = this.grid.filter((row) => row.includes("."));
+    while (this.grid.length < this.height) {
+      this.grid.unshift(".".repeat(this.width));
     }
   }
 
