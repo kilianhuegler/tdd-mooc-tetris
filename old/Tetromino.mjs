@@ -1,4 +1,4 @@
-import {RotatingShape} from "./RotatingShape.mjs";
+import {RotatingShape} from "../src/RotatingShape.mjs";
 
 export class Tetromino {
   constructor(rotations, i = 0) {
