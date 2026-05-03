@@ -17,4 +17,19 @@ describe("Nintendo scoring", () => {
     scoring.linesRemoved(1);
     expect(scoring.score).to.equal(40);
   });
+
+  test("double line clear -> 100 points", () => {
+    scoring.linesRemoved(2);
+    expect(scoring.score).to.equal(100);
+  });
+
+  test("triple line clear -> 300 points", () => {
+    scoring.linesRemoved(3);
+    expect(scoring.score).to.equal(300);
+  });
+
+  test("quadruple line clear -> 1200 points", () => {
+    scoring.linesRemoved(4);
+    expect(scoring.score).to.equal(1200);
+  });
 });
