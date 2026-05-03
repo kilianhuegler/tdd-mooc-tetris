@@ -4,5 +4,6 @@ export default {
     setupFiles: ["test/testing.mjs"],
     passWithNoTests: true,
     forceRerunTriggers: ["**"],
+    exclude: ["**/node_modules/**", "old/**"],
   },
 };
