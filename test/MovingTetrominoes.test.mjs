@@ -1,7 +1,6 @@
 import { beforeEach, describe, test } from "vitest";
 import { expect } from "chai";
 import { Board } from "../src/Board.mjs";
-import { Tetromino } from "../src/Tetromino.mjs";
 
 function fallToBottom(board) {
   for (let i = 0; i < 10; i++) {
@@ -9,13 +8,13 @@ function fallToBottom(board) {
   }
 }
 
-describe("MovingTetrominoes", () => {
+describe("Moving Blocks", () => {
   let board;
   beforeEach(() => {
     board = new Board(10, 6);
   });
 
-  test("a falling tetromino can be moved left", () => {
+  test("a falling block can be moved left", () => {
     board.drop("XX\nXX");
     board.moveLeft();
 
@@ -29,7 +28,7 @@ describe("MovingTetrominoes", () => {
     );
   });
 
-  test("a falling tetromino can be moved right", () => {
+  test("a falling block can be moved right", () => {
     board.drop("XX\nXX");
     board.moveRight();
 
@@ -43,7 +42,7 @@ describe("MovingTetrominoes", () => {
     );
   });
 
-  test("a falling tetromino can be moved down", () => {
+  test("a falling block can be moved down", () => {
     board.drop("XX\nXX");
     board.moveDown();
 
@@ -119,11 +118,11 @@ describe("MovingTetrominoes", () => {
 
     expect(board.toString()).to.equalShape(
       `..........
-     ..........
-     ..........
-     ..XX......
-     XXXX......
-     XX........`
+      ..........
+      ..........
+      ..XX......
+      XXXX......
+      XX........`
     );
   });
 
@@ -145,11 +144,11 @@ describe("MovingTetrominoes", () => {
 
     expect(board.toString()).to.equalShape(
       `..........
-     ..........
-     ..........
-     ......XX..
-     ......XXXX
-     ........XX`
+      ..........
+      ..........
+      ......XX..
+      ......XXXX
+      ........XX`
     );
   });
 
@@ -162,11 +161,11 @@ describe("MovingTetrominoes", () => {
 
     expect(board.toString()).to.equalShape(
       `..........
-     ..........
-     ....XX....
-     ....XX....
-     ....XX....
-     ....XX....`
+      ..........
+      ....XX....
+      ....XX....
+      ....XX....
+      ....XX....`
     );
 
     expect(board.hasFalling()).to.be.false;
