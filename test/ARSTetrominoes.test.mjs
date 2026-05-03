@@ -2,6 +2,16 @@ import { describe, test } from "vitest";
 import { expect } from "chai";
 import { ARSTetromino } from "../src/ARSTetromino.mjs";
 
+function distinctOrientations(shape) {
+  const distinct = new Set();
+  let current = shape;
+  for (let i = 0; i < 10; i++) {
+    distinct.add(current.toString());
+    current = current.rotateRight();
+  }
+  return distinct;
+}
+
 describe("ARS T shape", () => {
   test("spawn orientation", () => {
     expect(ARSTetromino.T_SHAPE.toString()).to.equalShape(
@@ -25,6 +35,10 @@ describe("ARS T shape", () => {
        .TT
        .T.`
     );
+  });
+
+  test("has 4 distinct orientations", () => {
+    expect(distinctOrientations(ARSTetromino.T_SHAPE).size).to.equal(4);
   });
 });
 
@@ -55,6 +69,10 @@ describe("ARS I shape", () => {
          ..I.`
     );
   });
+
+  test("has 2 distinct orientations", () => {
+    expect(distinctOrientations(ARSTetromino.I_SHAPE).size).to.equal(2);
+  });
 });
 
 describe("ARS O shape", () => {
@@ -77,6 +95,10 @@ describe("ARS O shape", () => {
       `OO
        OO`
     );
+  });
+
+  test("has 1 distinct orientations", () => {
+    expect(distinctOrientations(ARSTetromino.O_SHAPE).size).to.equal(1);
   });
 });
 
@@ -104,6 +126,10 @@ describe("ARS L shape", () => {
        .LL`
     );
   });
+
+  test("has 4 distinct orientations", () => {
+    expect(distinctOrientations(ARSTetromino.L_SHAPE).size).to.equal(4);
+  });
 });
 
 describe("ARS J shape", () => {
@@ -129,6 +155,10 @@ describe("ARS J shape", () => {
        .J.
        .J.`
     );
+  });
+
+  test("has 4 distinct orientations", () => {
+    expect(distinctOrientations(ARSTetromino.J_SHAPE).size).to.equal(4);
   });
 });
 
@@ -156,6 +186,10 @@ describe("ARS S shape", () => {
        .S.`
     );
   });
+
+  test("has 2 distinct orientations", () => {
+    expect(distinctOrientations(ARSTetromino.S_SHAPE).size).to.equal(2);
+  });
 });
 
 describe("ARS Z shape", () => {
@@ -181,5 +215,9 @@ describe("ARS Z shape", () => {
        .ZZ
        .Z.`
     );
+  });
+
+  test("has 2 distinct orientations", () => {
+    expect(distinctOrientations(ARSTetromino.Z_SHAPE).size).to.equal(2);
   });
 });
