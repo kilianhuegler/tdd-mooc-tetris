@@ -12,4 +12,9 @@ describe("Nintendo scoring", () => {
   test("score starts at zero", () => {
     expect(scoring.score).to.equal(0);
   });
+
+  test("single line clear -> 40 points", () => {
+    scoring.linesRemoved(1);
+    expect(scoring.score).to.equal(40);
+  });
 });
