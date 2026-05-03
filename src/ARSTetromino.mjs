@@ -16,6 +16,8 @@ export class ARSTetromino {
 
   static S_SHAPE = new ARSTetromino(["...\n.SS\nSS.\n", "S..\nSS.\n.S.\n"]);
 
+  static Z_SHAPE = new ARSTetromino(["...\nZZ.\n.ZZ\n", "..Z\n.ZZ\n.Z.\n"]);
+
   toString() {
     return this.rotations[this.i];
   }
