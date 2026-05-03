@@ -41,8 +41,15 @@ export class Board {
     if (this.hitBottomOrBlock()) {
       this.freeze();
       this.block = undefined;
+      this.clearFullLines();
     } else {
       this.row++;
+    }
+  }
+
+  clearFullLines() {
+    if (!this.grid[this.height - 1].includes(".")) {
+      this.grid[this.height - 1] = ".".repeat(this.width);
     }
   }
 
