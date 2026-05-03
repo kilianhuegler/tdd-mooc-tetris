@@ -28,4 +28,23 @@ describe("Board observers", () => {
 
     expect(observer.calls).to.deep.equal([1]);
   });
+
+  test("does NOT notify observer when block lands without clearing", () => {
+    board.addObserver(observer);
+
+    board.drop("X");
+    fallToBottom(board);
+
+    expect(observer.calls).to.deep.equal([]);
+  });
+
+  test("notifies observer when multiple rows (count) are cleared at once", () => {
+    const tallBoard = new Board(4, 4);
+    tallBoard.addObserver(observer);
+
+    tallBoard.drop("XXXX\nXXXX\nXXXX\nXXXX");
+    for (let i = 0; i < 10; i++) tallBoard.tick();
+
+    expect(observer.calls).to.deep.equal([4]);
+  });
 });
