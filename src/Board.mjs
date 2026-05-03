@@ -6,6 +6,7 @@ export class Board {
     this.width = width;
     this.height = height;
     this.grid = Array.from({ length: height }, () => ".".repeat(width));
+    this.observers = [];
   }
 
   *blockCells() {
@@ -18,6 +19,9 @@ export class Board {
         }
       }
     }
+  }
+  addObserver(observer) {
+    this.observers.push(observer);
   }
 
   blockRows() {
@@ -48,11 +52,16 @@ export class Board {
   }
 
   clearFullLines() {
+    const before = this.grid.length;
     this.grid = this.grid.filter((row) => row.includes("."));
+    const removed = before - this.grid.length;
     while (this.grid.length < this.height) {
       this.grid.unshift(".".repeat(this.width));
     }
-  }
+    if (removed > 0) {
+      for (const observer of this.observers) {
+        observer.linesRemoved(removed);
+      }}}
 
   hitBottomOrBlock() {
     for (const { row, col } of this.blockCells()) {
