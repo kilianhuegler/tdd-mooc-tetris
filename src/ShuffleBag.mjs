@@ -4,6 +4,6 @@ export class ShuffleBag {
   }
 
   draw() {
-    return this.items[0];
+    return this.items.shift();
   }
 }
