@@ -3,6 +3,14 @@ import { Scoring } from "./Scoring.mjs";
 import { ShuffleBag } from "./ShuffleBag.mjs";
 import { ARSTetromino } from "./ARSTetromino.mjs";
 
+function fisherYatesShuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
 // TODO: change this code to match the API you have created, if you want to run the game for some manual testing
 
 function initGame() {
@@ -17,16 +25,19 @@ function initGame() {
   game.scoring = new Scoring();
   game.board = new Board(game.columns, game.rows);
   game.board.addObserver(game.scoring);
-  game.tetrominoes = new ShuffleBag([
-    ARSTetromino.I_SHAPE,
-    ARSTetromino.T_SHAPE,
-    ARSTetromino.L_SHAPE,
-    ARSTetromino.J_SHAPE,
-    ARSTetromino.T_SHAPE,
-    ARSTetromino.S_SHAPE,
-    ARSTetromino.Z_SHAPE,
-    ARSTetromino.O_SHAPE,
-  ]);
+  game.tetrominoes = new ShuffleBag(
+    [
+      ARSTetromino.I_SHAPE,
+      ARSTetromino.T_SHAPE,
+      ARSTetromino.L_SHAPE,
+      ARSTetromino.J_SHAPE,
+      ARSTetromino.T_SHAPE,
+      ARSTetromino.S_SHAPE,
+      ARSTetromino.Z_SHAPE,
+      ARSTetromino.O_SHAPE,
+    ],
+    fisherYatesShuffle
+  );
 
   document.addEventListener("keydown", (event) => {
     if (event.code === "Space") {
@@ -71,7 +82,7 @@ function progressTime(game, timestamp) {
 
 function tick(game) {
   if (!game.board.hasFalling()) {
-    game.board.drop(game.tetrominoes.next());
+    game.board.drop(game.tetrominoes.draw());
   } else {
     game.board.tick();
   }
@@ -109,7 +120,7 @@ function renderGame(game, canvas, timestamp) {
   drawBackground(ctx, canvasWidth, canvasHeight);
   for (let row = 0; row < game.rows; row++) {
     for (let column = 0; column < game.columns; column++) {
-      const cell = game.board.cellAt(row, column);
+      const cell = game.board.getCellAt(row, column);
       drawCell(ctx, { cell, row, column, cellWidth, cellHeight });
     }
   }
@@ -146,12 +157,6 @@ const CELL_COLORS = {
 function drawScoring(ctx, { score, level, canvasWidth }) {
   const margin = 5;
   const fontSize = 22;
-  drawText(ctx, {
-    text: `Level ${level}`,
-    x: margin,
-    y: fontSize + margin,
-    font: `${fontSize}px sans-serif`,
-  });
   drawText(ctx, {
     text: `Score ${score}`,
     textAlign: "right",
