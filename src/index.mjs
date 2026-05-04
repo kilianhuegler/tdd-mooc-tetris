@@ -1,5 +1,5 @@
 import { Board } from "./Board.mjs";
-import { ScoringSystem } from "./ScoringSystem.mjs";
+import { Scoring } from "./Scoring.mjs";
 import { ShuffleBag } from "./ShuffleBag.mjs";
 import { ARSTetromino } from "./ARSTetromino.mjs";
 
@@ -14,11 +14,9 @@ function initGame() {
     tickDuration: 1000,
     nextTick: 0,
   };
-  game.scoring = new ScoringSystem();
+  game.scoring = new Scoring();
   game.board = new Board(game.columns, game.rows);
-  game.board.onClearLine = (lineCount) => {
-    game.scoring.linesCleared(lineCount);
-  };
+  game.board.addObserver(game.scoring);
   game.tetrominoes = new ShuffleBag([
     ARSTetromino.I_SHAPE,
     ARSTetromino.T_SHAPE,
