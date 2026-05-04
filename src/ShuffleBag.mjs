@@ -2,13 +2,17 @@ export class ShuffleBag {
   constructor(items, shuffleFn) {
     this.items = items;
     this.shuffleFn = shuffleFn;
-    this.remaining = shuffleFn([...items]);
+    this.refill();
   }
 
   draw() {
     if (this.remaining.length === 0) {
-      this.remaining = [...this.items];
+      this.refill();
     }
     return this.remaining.shift();
+  }
+
+  refill() {
+    this.remaining = this.shuffleFn([...this.items]);
   }
 }

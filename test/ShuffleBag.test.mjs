@@ -36,4 +36,19 @@ describe("Shuffle bag", () => {
     new ShuffleBag(["A", "B"], spyShuffle);
     expect(calls).to.deep.equal([["A", "B"]]);
   });
+
+  test("call shuffleFn when refilling the bag", () => {
+    const calls = [];
+    const spyShuffle = (arr) => {
+      calls.push([...arr]);
+      return arr;
+    };
+
+    const bag = new ShuffleBag(["A", "B"], spyShuffle);
+    bag.draw();
+    bag.draw();
+    bag.draw();
+
+    expect(calls).to.deep.equal([["A", "B"], ["A", "B"]]);
+  })
 });
