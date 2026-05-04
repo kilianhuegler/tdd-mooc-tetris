@@ -17,4 +17,12 @@ describe("Shuffle bag", () => {
     expect(bag.draw()).to.equal("A");
     expect(bag.draw()).to.equal("B");
   });
+
+  test("refill after the bag is empty", () => {
+    const bag = new ShuffleBag(["A", "B"], noShuffle);
+    bag.draw();
+    bag.draw();
+
+    expect(bag.draw()).to.equal("A");
+  });
 });
