@@ -4,6 +4,14 @@ import { ShuffleBag } from "../src/ShuffleBag.mjs";
 
 const noShuffle = (arr) => arr;
 
+function fisherYatesShuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
 describe("Shuffle bag", () => {
   test("bag with one item and one draw", () => {
     const bag = new ShuffleBag(["A"], noShuffle);
@@ -51,4 +59,34 @@ describe("Shuffle bag", () => {
 
     expect(calls).to.deep.equal([["A", "B"], ["A", "B"]]);
   })
+});
+
+describe("Real randomness shuffle bag", () => {
+  test("items appear exactly once per cycle", () => {
+    const items = ["A", "B", "C", "D", "E", "F", "G"];
+    const bag = new ShuffleBag(items, fisherYatesShuffle);
+
+    const drawn = [];
+    for (let i = 0; i < items.length; i++) {
+      drawn.push(bag.draw());
+    }
+
+    expect(drawn.slice().sort()).to.deep.equal([...items].sort());
+  });
+
+  test("items appear two times during the cycle", () => {
+    const items = ["A", "B", "C"];
+    const bag = new ShuffleBag(items, fisherYatesShuffle);
+
+    const drawn = [];
+    for (let i = 0; i < items.length * 2; i++) {
+      drawn.push(bag.draw());
+    }
+
+    const counts = {};
+    for (const item of drawn) {
+      counts[item] = (counts[item] || 0) + 1;
+    }
+    expect(counts).to.deep.equal({ A: 2, B: 2, C: 2 });
+  });
 });
