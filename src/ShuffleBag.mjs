@@ -1,7 +1,8 @@
 export class ShuffleBag {
   constructor(items, shuffleFn) {
     this.items = items;
-    this.remaining = [...items];
+    this.shuffleFn = shuffleFn;
+    this.remaining = shuffleFn([...items]);
   }
 
   draw() {
