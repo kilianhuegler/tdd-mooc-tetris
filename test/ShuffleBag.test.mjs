@@ -10,4 +10,11 @@ describe("Shuffle bag", () => {
 
     expect(bag.draw()).to.equal("A");
   });
+
+  test("draws items in order until bag is empty", () => {
+    const bag = new ShuffleBag(["A", "B"], noShuffle);
+
+    expect(bag.draw()).to.equal("A");
+    expect(bag.draw()).to.equal("B");
+  });
 });
