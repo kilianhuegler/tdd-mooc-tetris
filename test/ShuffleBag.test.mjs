@@ -25,4 +25,15 @@ describe("Shuffle bag", () => {
 
     expect(bag.draw()).to.equal("A");
   });
+
+  test("call shuffleFn when filling the bag", () => {
+    const calls = [];
+    const spyShuffle = (arr) => {
+      calls.push([...arr]);
+      return arr;
+    };
+
+    new ShuffleBag(["A", "B"], spyShuffle);
+    expect(calls).to.deep.equal([["A", "B"]]);
+  });
 });
